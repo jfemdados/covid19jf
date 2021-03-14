@@ -26,15 +26,15 @@ lista_mg <- map(.x= list(caso, obito_cartorio, caso_full), .f= ~filter(.x, state
 caso_mg<-lista_mg[[1]]
 obito_cartorio_mg<-lista_mg[[2]]%>%
   mutate(date= lubridate::ymd(date))
-caso_full_mg<-lista_mg[[3]]
+caso_full_mg<-lista_mg[[3]]%>%
+  mutate(last_available_deaths_100k_inhabitants= last_available_deaths*100000/estimated_population)
 
 #Micro Dados, cada linha é uma pessoa
 
 ### Graficos Linhas####
 
-casos_zona_da_mata_30mil<- casos_zona_da_mata_30mil%>%
-  filter(city_ibge_code %in% codigo_zm, estimated_population >30000)%>%
-  mutate(last_available_deaths_100k_inhabitants= last_available_deaths*100000/estimated_population)
+casos_zona_da_mata_30mil<- caso_full_mg%>%
+  filter(city_ibge_code %in% codigo_zm, estimated_population >30000)
 
 
 a<- caso_full_mg%>%
@@ -44,7 +44,7 @@ a<- caso_full_mg%>%
 
 b<- caso_full_mg%>%
   filter(city_ibge_code %in% codigo_zm, estimated_population >30000)%>%
-  pivot_wider(names_from = city, values_from = last_available_deaths)
+  pivot_wider(names_from = city, values_from = last_available_deaths_100k_inhabitants)
 
 c<- caso_full_mg%>%
   filter(city_ibge_code %in% codigo_zm, estimated_population >30000)%>%
