@@ -13,8 +13,6 @@ os scripts em R são organizados da seguinte forma:
 Mas também tem o Open Data sus original, que se pá vou usar pra fazer data da notificação vs data da morte e covid vs srag: https://opendatasus.saude.gov.br/dataset/bd-srag-2020 
 Não deu certo, a base tem muito menos casos do que a base total.
 
-![image](https://user-images.githubusercontent.com/53457944/113977580-2d818780-9819-11eb-8dbe-41ed87f742ea.png)
-
 
 Do **Brasil IO**, base mais organizada por voluntários, no link: https://brasil.io/dataset/covid19/caso_full/., fiz dois códigos:
 **dados_diarios_brasil_io.r**, um de dados diários, que tem a média movel. Funciona bem, mas os dados demoram. vou tee que achar outra base
